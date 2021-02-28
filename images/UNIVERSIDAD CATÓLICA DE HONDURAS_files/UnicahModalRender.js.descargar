@@ -1,0 +1,21 @@
+function UnicahModal()
+{
+	this.divstr;
+
+	this.show = function()
+	{
+		///UserCodeRegionStart:[show] (do not remove this comment.)
+		this.MyObject = 'unicah_' + this.ControlName;
+		window[this.MyObject] = new unicahModalDialogue({divCollectionStr:this.divstr,onClose:this.ModalClosed}); 		
+		var str = "window.hideModal = function(){ window['" + this.MyObject + "'].hideModal('slow');}";
+		eval(str);
+		str = "window.showModal = function (Mwidth, MHeight, MId ){if(MId){window['" + this.MyObject + "'].showModal(Mwidth, MHeight, MId);}else{ window['" + this.MyObject + "'].hideModal();} return true;}";
+		eval(str);
+		
+		///UserCodeRegionEnd: (do not remove this comment.)
+	}
+	///UserCodeRegionStart:[User Functions] (do not remove this comment.)
+	this.MyObject;
+	
+	///UserCodeRegionEnd: (do not remove this comment.):
+}

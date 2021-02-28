@@ -1,0 +1,133 @@
+function unicahModalDialogue(options){
+    var defaults = {
+        onClose:function(){},
+        divCollectionStr:'',
+	zIndexF:0
+    }
+    if (options) $.extend(defaults, options);
+    this.options = defaults;
+    var me = this;
+    /* Inicializando los contenedores del dialogo*/
+    //Panel que cubre el fondo
+    this.modalBackGround = document.createElement('DIV');
+    this.modalBackGround.setAttribute('id','modalBackground');
+    //Contenedor del dialogo
+    this.modalDialogue = document.createElement('DIV');
+    this.modalDialogue.setAttribute('id','modalContent');
+    this.modalDialogue.setAttribute('class','modalbox');
+    var link = document.createElement('a'),
+        linkImg = document.createElement('img');
+    link.setAttribute('id','modalClose');
+    //linkImg.setAttribute('src', 'UnicahSDK/images/modalClose.png');
+    var imgUrl = gx.util.resourceUrl(gx.basePath + gx.staticDirectory + 'UnicahModal/images/modalClose.png', true);
+    linkImg.setAttribute('src', imgUrl);
+    linkImg.setAttribute('alt','Salir');
+    link.appendChild(linkImg);
+    this.modalDialogue.appendChild(link);
+    //Contenedor de Elemento HTML  Internos
+    this.divHolder = document.createElement('div');
+    this.divHolder.setAttribute('id','modalDivContent');
+    //Contenedor del Iframe
+    this.iframeHolder = document.createElement('iframe');
+    this.iframeHolder.setAttribute('id','modalUrlContent');
+    this.iframeHolder.setAttribute('frameborder','0');
+    this.modalDialogue.appendChild(this.divHolder);
+    this.modalDialogue.appendChild(this.iframeHolder);
+    /*Preparando elementos de divs a mostrar*/
+    this.divElements = new Array();
+    if (defaults.divCollectionStr.length > 0){
+        var strDivData = defaults.divCollectionStr+';';
+        var divArray = strDivData.split(";");
+        var d;
+        for (d in divArray){
+            var modalInnerCt = document.getElementById(divArray[d]);
+            if (modalInnerCt){
+                this.divElements.push({divId:divArray[d],divElement:modalInnerCt});
+                $(modalInnerCt).hide();
+            }
+        }
+    }
+    //verificar si hay elemento
+    function getDiv(divElementId){
+        var m;
+        for (m in me.divElements){
+            if(divElementId==me.divElements[m].divId){
+                return me.divElements[m].divElement;
+            }
+        }
+        return false;
+    }
+    //---------------------------------------------
+    var formHolder = $('form'); 
+    if (!formHolder){
+	formHolder = $('body');
+    }
+    formHolder.append($(this.modalBackGround));
+    formHolder.append($(this.modalDialogue));
+    
+    this.showModal = function(modalWidth,modalHeight,modalDir){
+        var docHeight, docWidth, screenHeight, screenWidth, dialogTop, dialogLeft,vScrollOffset,hScrollOffset, DivElement;
+        docHeight = $(document).height();
+        docWidth = $(document).width();
+        if( (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))|| (navigator.userAgent.match(/iPad/i))) {
+		screenHeight = $(window).height();
+        	screenWidth = $(document).width();
+	} else {
+		screenHeight = $(window).height();
+        	screenWidth = $(window).width();
+	}
+        vScrollOffset = $(document).scrollTop();
+        hScrollOffset = $(document).scrollLeft();
+        dialogTop = (screenHeight/2 - (modalHeight + 30)/2 + vScrollOffset);
+	if(dialogTop<30) dialogTop=30;
+        dialogLeft = (screenWidth/2  - (modalWidth + 30)/2 + hScrollOffset);
+	if(dialogLeft<30) dialogLeft = 30;
+	$(me.modalBackGround).css({ 'height':docHeight +'px','width':docWidth + 'px','z-index':998 + defaults.zIndexF +''}).show(); 
+        $(me.modalDialogue).css({'height':modalHeight +'px','width':modalWidth +'px',
+                                'top':dialogTop+'px','left':dialogLeft+'px','z-index':999 + defaults.zIndexF + ''}).show('slow');   
+
+	DivElement = getDiv(modalDir);        
+        if(DivElement){
+            $(me.divHolder).empty().css('width',modalWidth - 30 +'px').append($(DivElement).show()).show();
+            $(me.iframeHolder).hide();
+        }else{
+            me.iframeHolder.src=modalDir;
+            if( (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))|| (navigator.userAgent.match(/iPad/i))) {
+                $(me.iframeHolder).bind({
+                        'onload': function(){
+                            $(me).css({'height':me.iframeHolder.contentWindow.document.body.scrollHeight + 30 + 'px'}); 
+                        }
+                    });
+            }
+            me.iframeHolder.setAttribute('width',modalWidth - 30 +'px');
+            me.iframeHolder.setAttribute('height',modalHeight - 30 +'px');
+            $(me.iframeHolder).css({'width':modalWidth - 30 +'px','height':modalHeight - 30 +'px'}).show();
+            $(me.divHolder).hide();
+        }
+        
+    }
+    function hideModal(animate){
+            $(me.modalDialogue).hide(animate,function(){$(me.modalBackGround).hide()});
+    }
+    $(link).click(function(e){
+            e.preventDefault();
+            hideModal('slow');
+            defaults.onClose();
+        });
+    this.hideModal = hideModal;
+    hideModal(0);
+    //Previniendo que los href llamen a otro lado por IE :(
+    $('form').find('a').each(function(){
+		var url = " "||$(this).attr('href');
+		if(url.substring(0,10).toUpperCase() == 'JAVASCRIPT'){
+			var javaStat = $(this).attr('href').substring(11);
+			$(this).attr('href','');
+			$(this).click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				eval(javaStat);
+				return false;
+			});
+		}
+	});
+}

@@ -1,0 +1,42 @@
+.unicah_breadcrumbs{
+	font-size: 0.7em;
+	height:30px;
+	line-height:30px;
+	color:#202050;
+	border-bottom:solid 1px #2657b2;
+	border-top:solid 1px #2657b2;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	width:100%;
+	overflow:hidden;
+	margin:0px;
+	padding:0px;
+}
+.unicah_breadcrumb{
+	list-style-type:none;
+	padding-left:10px;
+	display:inline-block;
+	float:left;
+}
+
+.unicah_breadcrumb a{
+	display:inline-block;
+	height:30px;
+	background-image:url('../images/seperator.png'); 
+	background-repeat:no-repeat; 
+	background-position:right;
+	background-size:5px 30px;
+	padding-right: 15px;
+	text-decoration: none;
+	color:#2080D0;
+	outline:none;
+}
+.unicah_breadcrumb a:hover{
+	font-weight:bold;
+}
+
+.unicah_breadcrumb.home a img{
+	margin-top:6px;
+	width:17px;
+	height:17px;
+}

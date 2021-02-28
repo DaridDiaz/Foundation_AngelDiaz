@@ -1,0 +1,36 @@
+function UnicahSDK()
+{
+
+	this.show = function()
+	{
+		///UserCodeRegionStart:[show] (do not remove this comment.)
+		//console.log("Loading User Control");
+		if(!this.IsPostBack){
+			bindEvents();
+		}
+		
+		
+		
+		
+		///UserCodeRegionEnd: (do not remove this comment.)
+	}
+	///UserCodeRegionStart:[User Functions] (do not remove this comment.)
+	var errview =  $(".ErrorViewerFloat");
+	function bindEvents(){
+		errview.on("DOMNodeInserted DOMCharacterDataModified", function(){
+			console.log("OK");
+			if(errview.children().length > 0){
+				errview.show();
+			}else{
+				errview.hide();
+			}
+		}).on("click", function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			errview.hide().children().remove();
+		}).hide();
+	}
+	
+	
+	///UserCodeRegionEnd: (do not remove this comment.):
+}

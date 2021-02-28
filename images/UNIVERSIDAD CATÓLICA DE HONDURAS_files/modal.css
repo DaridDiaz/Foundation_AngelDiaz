@@ -1,0 +1,52 @@
+#modalBackground{
+    background-color:gray;
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+}
+
+#modalContent{
+	position:absolute;
+	background-color:white;
+	text-align:left;
+        -o-border-radius: 10px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: 0px 3px 7px #dfdfdf;
+	border-radius: 10px;
+	-moz-box-sizing: border-box;
+	-opera-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-khtml-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#modalContent iframe{
+	-webkit-overflow-scrolling: touch;
+}
+#modalClose{
+    position:relative;
+    display:block;
+    top:-22px;
+    left:-22px;
+}
+
+#modalClose img{
+    border:none;
+    -webkit-box-shadow: 0px 3px 3px #dfdfdf;
+    -webkit-border-radius: 11px;
+}
+
+#modalUrlContent{
+    display:block;
+    position:relative;
+    left:15px;
+    border:1px;
+}
+#modalDivContent{
+    display:block;
+    position:relative;
+    left:15px;
+    border:1px;
+}

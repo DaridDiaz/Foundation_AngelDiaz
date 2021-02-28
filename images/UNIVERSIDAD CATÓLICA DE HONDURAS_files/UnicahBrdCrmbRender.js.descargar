@@ -1,0 +1,48 @@
+function UnicahBrdCrmb()
+{
+	this.HomeUrl;
+	this.LinkItems;
+
+	// Databinding for property LinkItems
+	this.SetLinkItems = function(data)
+	{
+		///UserCodeRegionStart:[SetLinkItems] (do not remove this comment.)
+		this.LinkItems = data;
+		///UserCodeRegionEnd: (do not remove this comment.)
+	}
+
+	// Databinding for property LinkItems
+	this.GetLinkItems = function()
+	{
+		///UserCodeRegionStart:[GetLinkItems] (do not remove this comment.)
+		return this.LinkItems;
+		///UserCodeRegionEnd: (do not remove this comment.)
+	}
+
+	this.show = function()
+	{
+		///UserCodeRegionStart:[show] (do not remove this comment.)
+		var buffer =  new gx.text.stringBuffer();
+		buffer.clear();
+		var homeSrc = gx.util.resourceUrl(gx.basePath + gx.staticDirectory + 'UnicahBrdCrmb/images/home.png', true);
+		buffer.append('<ul class="unicah_breadcrumbs">');
+		buffer.append('<li class="unicah_breadcrumb home"><a href="' + this.HomeUrl + '" target="_self"><img src="' + homeSrc +'"/></a></li>');
+		var i=0;
+		 try {
+	        for (i = 0; this.LinkItems[i] != undefined; i++) {
+	           buffer.append('<li class="unicah_breadcrumb"><a href="' + this.LinkItems[i].urlLink + '" target="_self">' + this.LinkItems[i].caption + '</a></li>');
+	        }
+	        buffer.append('</ul>');
+	        this.setHtml(buffer.toString());
+        } catch (err) {
+	        //Handle errors here
+	    }
+		///UserCodeRegionEnd: (do not remove this comment.)
+	}
+	///UserCodeRegionStart:[User Functions] (do not remove this comment.)
+		
+	
+	
+	
+	///UserCodeRegionEnd: (do not remove this comment.):
+}

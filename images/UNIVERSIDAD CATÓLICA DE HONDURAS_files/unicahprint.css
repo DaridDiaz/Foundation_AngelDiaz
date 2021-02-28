@@ -1,0 +1,15 @@
+@media print{
+	.menu, #btnLogout, .unicah_header, .unicah_footer, .unicah_breadcrumbs, .noprint{
+		display:none;
+	}
+	.unicah_content,  .Highlighted{
+		border:0px;
+		box-shadow:none;
+	}
+	.unicah_workspace{
+		padding:5px !important;
+	}
+	.unicah{
+		width:100% !important;
+	}
+}

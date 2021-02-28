@@ -1,0 +1,104 @@
+.boxCanvas{
+	display:table;
+	position:relative;
+	font-family:arial, sans serif;
+}
+.boxCanvas div{
+	position:relative;
+	border:1px dashed #F2F2F2;
+	vertical-align: middle;
+	padding:5px;
+
+	-webkit-transition-property: backgroud-color font-size;
+	-webkit-transition-duration: 1s;
+	-webkit-transition-timing-function: ease;
+	
+	-moz-transition-property: backgroud-color font-size;
+	-moz-transition-duration: 1s;
+	-moz-transition-timing-function: ease;
+	
+	-o-transition-property: backgroud-color font-size;
+	-o-transition-duration: 1s;
+	-o-transition-timing-function: ease;
+
+	transition-property: backgroud-color font-size;
+	transition-duration: 1s;
+	transition-timing-function: ease;
+}
+
+.boxElements{
+	position:relative;
+	display:table-cell;
+	padding:5px;
+	font-weight:bold;
+	font-size:9px;
+	text-align:left;
+}
+.boxLabel{
+	display:table-cell;
+	vertical-align: middle;
+	font-weight:bold;
+	font-size:24px;
+	color:grey;
+	text-align:center;
+	width:60px;
+}
+
+.boxElement{
+	position:relative;
+	display:inline-table;
+	width:147px;
+	height:61px;
+	margin:3px;
+	text-align:center;
+	vertical-align:middle;
+	
+	-webkit-user-drag:element;
+	-webkit-user-select:none;
+
+
+	-webkit-transition-property: backgroud-color font-size;
+	-webkit-transition-duration: 1s;
+	-webkit-transition-timing-function: ease;
+	
+	-moz-transition-property: backgroud-color font-size;
+	-moz-transition-duration: 1s;
+	-moz-transition-timing-function: ease;
+	
+	-o-transition-property: backgroud-color font-size;
+	-o-transition-duration: 1s;
+	-o-transition-timing-function: ease;
+
+	transition-property: backgroud-color font-size;
+	transition-duration: 1s;
+	transition-timing-function: ease;
+	
+	-webkit-user-select: none; 
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none; 
+	cursor:pointer;  
+}
+.boxElement p{
+	position:relative;
+	top:0px;
+	left:0px;
+	padding:0px;
+	margin:0px;
+}
+.boxElement p span{
+	position:relative;
+	top:14px;
+	display:inline;
+	margin:5px auto;
+	text-shadow: 0 0 2px #999;
+}
+
+.boxImage{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:146px;
+	height:61px;
+	box-shadow: 0px 2px 5px #000000;
+}
